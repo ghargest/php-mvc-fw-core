@@ -6,5 +6,10 @@
             "email": "ghargest@yahoo.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "ghargest\\phpmvc\\": "."
+        }
+    },
     "require": {}
 }
