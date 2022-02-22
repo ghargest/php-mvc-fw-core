@@ -1,0 +1,10 @@
+{
+    "name": "ghargest/php-mvc-fw-core",
+    "authors": [
+        {
+            "name": "Greg Hargest",
+            "email": "ghargest@yahoo.com"
+        }
+    ],
+    "require": {}
+}
