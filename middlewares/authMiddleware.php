@@ -1,9 +1,9 @@
 <?php
 
-namespace app\core\middlewares;
+namespace ghargest\phpmvc\middlewares;
 
-use app\core\Application;
-use app\core\exception\ForbiddenException;
+use ghargest\phpmvc\Application;
+use ghargest\phpmvc\exception\ForbiddenException;
 
 class AuthMiddleware extends BaseMiddleware {
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace app\core;
+namespace ghargest\phpmvc;
 
-use app\core\db\Database;
+use ghargest\phpmvc\db\Database;
 
 class Application {
 

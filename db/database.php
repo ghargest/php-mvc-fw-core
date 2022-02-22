@@ -1,8 +1,8 @@
 <?php
 
-namespace app\core\db;
+namespace ghargest\phpmvc\db;
 
-use app\core\Application;
+use ghargest\phpmvc\Application;
 use PDO;
 
 class Database {

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\core\exception;
+namespace ghargest\phpmvc\exception;
 
 use Exception;
 

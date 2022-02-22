@@ -1,6 +1,6 @@
 <?php
 
-namespace app\core\form;
+namespace ghargest\phpmvc\form;
 
 class TextAreaField extends BaseField {
 
