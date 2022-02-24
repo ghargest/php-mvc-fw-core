@@ -26,14 +26,40 @@ class Router {
         $this->routes['post'][$path] = $callback;
     }
 
+    public function getCallback() {
+
+        $path = trim($this->request->path(), '/');
+        $method = $this->request->method();
+        $routes = $this->routes[$method] ?? [];
+        $routeParams = false;
+
+        foreach ($routes as $route => $callback) {
+            $route = trim($route, '/');
+            $routeNames = [];
+            if (!$route) { continue; }
+            if (preg_match_all('/\{(\w+)(:[^}]+)?}/', $route, $matches)) { $routeNames = $matches[1]; }
+            $routeRegex = "@^" . preg_replace_callback('/\{\w+(:([^}]+))?}/', fn($m) => isset($m[2]) ? "({$m[2]})" : "(\w+)", $route) . "$@";
+            if (preg_match_all($routeRegex, $path, $valueMatches)) {
+                $values = [];
+                for ($i = 1; $i < count($valueMatches); $i++) {
+                    $values[] = $valueMatches[$i][0];
+                }
+                $this->request->setRouteParams(array_combine($routeNames, $values));
+                return $callback;
+            }
+        }
+        return false;
+    }
+
     public function resolve() {
 
         $path = $this->request->path();
         $method = $this->request->method();
         $callback = $this->routes[$method][$path] ?? false;
 
-        if ($callback === false) {
-            throw new NotFoundException();
+        if (!$callback) {
+            $callback = $this->getCallback();
+            if (!$callback) { throw new NotFoundException(); }
         }
 
         if (is_string($callback)) { return Application::$app->view->renderView($callback); }
