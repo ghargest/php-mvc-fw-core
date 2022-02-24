@@ -4,6 +4,8 @@ namespace ghargest\phpmvc;
 
 class Request {
 
+    private array $routeParams = [];
+
     public function path() {
 
         $path = $_SERVER['REQUEST_URI'] ?? '/';
@@ -43,5 +45,16 @@ class Request {
     public function isPost() {
 
         return ($this->method() === 'post');
+    }
+
+    public function setRouteParams($params) {
+
+        $this->routeParams = $params;
+        return $this;
+    }
+
+    public function getRouteParams() {
+
+        return $this->routeParams;
     }
 }
